@@ -7,7 +7,7 @@ import convertArrayToObject from "./arrayToObject";
 import { show } from "./models/show";
 
 export type State = {
-  shows: { [id: number]: show };
+  shows: { [q: string]: show[] };
   showQuery: string;
 };
 
@@ -19,12 +19,15 @@ const reducer: Reducer<State> = (currentState = initialState, action) => {
   switch (action.type) {
     case SHOW_LIST_FETCH: {
       const query = action.payload;
-      return { ...currentState, showQuery: query ,shows:{}};
+      return { ...currentState, showQuery: query };
     }
     case SHOW_LIST_FETCHED: {
-      const showsObj = convertArrayToObject(action.payload);
+      const { shows, query } = action.payload;
 
-      return { ...currentState, ...currentState.shows, shows: showsObj };
+      return {
+        ...currentState,
+        shows: { ...currentState.shows, [query]: shows },
+      };
     }
     default: {
       return currentState;

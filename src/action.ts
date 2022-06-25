@@ -5,7 +5,7 @@ export const SHOW_LIST_FETCHED = "SHOW_LIST_FETCHED";
 
 export const showListFetch = (payLoad:string) => ({ type: SHOW_LIST_FETCH,payload:payLoad });
 
-export const showListFetched = (payload:show[]) => ({
+export const showListFetched = (shows: show[], query: string) => ({
   type: SHOW_LIST_FETCHED,
-  payload: payload,
+  payload: { shows, query },
 });

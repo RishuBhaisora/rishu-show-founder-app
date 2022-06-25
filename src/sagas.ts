@@ -12,10 +12,10 @@ export function* rootSaga() {
 }
 
 export function* getShowsSaga(action: AnyAction): Generator<any, any, any> {
+  yield delay(1000);
   if(!action.payload){
     return
   }
-  yield delay(1000);
   const data = yield call(getShowList, action);
-  yield put(showListFetched(data));
+  yield put(showListFetched(data,action.payload));
 }
