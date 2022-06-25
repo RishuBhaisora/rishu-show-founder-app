@@ -1,8 +1,9 @@
 import createSagaMiddleware from "redux-saga";
 import { takeLatest } from "redux-saga/effects";
 import { showListFetched, SHOW_LIST_FETCH } from "./action";
-import { call, put } from "redux-saga/effects";
+import { call, put, delay } from "redux-saga/effects";
 import { getShowList } from "./api";
+import { AnyAction } from "redux";
 
 export const sagaMiddleware = createSagaMiddleware();
 
@@ -10,7 +11,11 @@ export function* rootSaga() {
   yield takeLatest(SHOW_LIST_FETCH, getShowsSaga);
 }
 
-export function* getShowsSaga(): Generator<any, any, any> {
-  const data = yield call(getShowList);
+export function* getShowsSaga(action: AnyAction): Generator<any, any, any> {
+  if(!action.payload){
+    return
+  }
+  yield delay(1000);
+  const data = yield call(getShowList, action);
   yield put(showListFetched(data));
 }
