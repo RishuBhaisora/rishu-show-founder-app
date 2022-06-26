@@ -22,6 +22,7 @@ const showReducer: Reducer<Show> = (showState = initialShowState, action) => {
     }
     case SHOW_LIST_FETCHED: {
       const { shows, query }: { shows: show[]; query: string } = action.payload;
+      
       const showEntity = new schema.Entity("shows");
       const normalized = normalize(shows, [showEntity]);
       const normalizedShows = normalized.entities.shows;

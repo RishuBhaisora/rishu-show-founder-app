@@ -4,7 +4,6 @@ export type show = {
   name: string;
   type: string;
   language: string;
-  genres: string[];
   status: string;
   rating: {
   average: number;

@@ -6,6 +6,5 @@ export async function getShowList(action:AnyAction) {
   const data = await axios.get<{ show: show }[]>(
     `https://api.tvmaze.com/search/shows?q=${action.payload}`
   );
-  console.log(data.data.map((d) => d.show));
   return data.data.map(d => d.show);
 }

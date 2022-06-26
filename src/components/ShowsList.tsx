@@ -39,8 +39,9 @@ const ShowsList: FC<showListProps> = ({
 };
 
 ShowsList.defaultProps = {};
+
 const mapStateToProps = (s: State) => ({
-  showList: showListSelector(s),
+  showList: showListSelector(s) as any[] ,
   showQuery: showQuerySelector(s),
 });
 
