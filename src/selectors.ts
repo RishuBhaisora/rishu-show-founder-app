@@ -11,6 +11,11 @@ export const showEntitiesSelector = createSelector(
   showsSelector,
   (shows) => shows.entities
 );
+const b = (s: State) => {
+  const a = showEntitiesSelector(s);
+  return a;
+};
+
 export const showQuerySelector = createSelector(
   showsSelector,
   (shows) => shows.query
@@ -23,5 +28,5 @@ const showIdSelector = createSelector(
 export const showListSelector = createSelector(
   showIdSelector,
   showEntitiesSelector,
-  (ids, entities) => ids.map((id) => entities[id]) as any as show[]
+  (ids, entities) => ids.map((id) => entities[id])
 );

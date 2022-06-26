@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, createStore, Reducer } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import _default from "react-redux/es/components/connect";
 import { rootSaga, sagaMiddleware } from "./sagas";
-import  showReducer from "./reducers/showReducer";
+import showReducer from "./reducers/showReducer";
 
 export const reducer = combineReducers({
   shows: showReducer,
