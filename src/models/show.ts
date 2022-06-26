@@ -6,15 +6,11 @@ export type show = {
   language: string;
   status: string;
   rating: {
-  average: number;
-};
+    average: number;
+  };
   image: {
-  medium: string;
-  original: string;
-};
+    medium: string;
+    original: string;
+  };
   summary: string;
 };
-
-
-
-
