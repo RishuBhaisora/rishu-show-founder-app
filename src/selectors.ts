@@ -1,10 +1,27 @@
 import { show } from "./models/show";
 import { State } from "./store";
+import { createSelector } from "reselect";
 
-export const showListSelector = (s: State) => {
-  const showId = s.shows.againstQuery[s.shows.query] || [];
-  const data = showId.map((id) => s.shows.entities[id]) as any as show[];
-
-  return data;
-};
-export const showQuerySelector = (s: State) => s.shows.query;
+const showsSelector = (s: State) => s.shows;
+const showsAgainstQuerySelector = createSelector(
+  showsSelector,
+  (shows) => shows.againstQuery
+);
+export const showEntitiesSelector = createSelector(
+  showsSelector,
+  (shows) => shows.entities
+);
+export const showQuerySelector = createSelector(
+  showsSelector,
+  (shows) => shows.query
+);
+const showIdSelector = createSelector(
+  showsAgainstQuerySelector,
+  showQuerySelector,
+  (againstQuery, query) => againstQuery[query] || []
+);
+export const showListSelector = createSelector(
+  showIdSelector,
+  showEntitiesSelector,
+  (ids, entities) => ids.map((id) => entities[id]) as any as show[]
+);
